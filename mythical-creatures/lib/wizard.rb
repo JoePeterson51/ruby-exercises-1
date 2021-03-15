@@ -1,13 +1,13 @@
 class Wizard
-  attr_reader :name
+  attr_reader :name, :bearded
   def initialize(name, bearded: true)
     @name = name
     @bearded = bearded
-    @spells_cast = 0
+    @rested = 0
   end
 
   def bearded?
-    @bearded
+    bearded
   end
 
   def incantation(incantation)
@@ -15,15 +15,12 @@ class Wizard
   end
 
   def rested?
-    if @spells_cast < 3
-      true
-    else
-      false
-    end
+    return false if @rested >= 3
+    true
   end
 
   def cast
-    @spells_cast += 1
+    @rested += 1
     return "MAGIC MISSILE"
   end
 end
